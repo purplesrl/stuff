@@ -1,6 +1,7 @@
 # kubernetes node setup on 18.04 bionic 
 # username user should be already present
 # file join-command generated from master playbook should be accesible
+# warning: will reset previous config
 
 ---
 - hosts: nodes
@@ -97,6 +98,10 @@
       name: kubelet
       daemon_reload: yes
       state: restarted
+
+  - name: Reset kubeadm in case we already installed it
+    shell: kubeadm reset --force
+    ignore_errors: true
 
   - name: Copy the join command to server location
     copy: src=join-command dest=/tmp/join-command.sh mode=0777
