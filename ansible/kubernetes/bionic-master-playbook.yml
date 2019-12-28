@@ -103,7 +103,7 @@
     ignore_errors: true
 
   - name: Initialize the Kubernetes cluster using kubeadm
-    command: kubeadm init --node-name k8s-master --pod-network-cidr=192.168.0.0/16
+    command: kubeadm init --node-name k8s-master --pod-network-cidr=10.244.0.0/16
 
   - name: Create .kube directory
     file:
